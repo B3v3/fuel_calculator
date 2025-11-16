@@ -4,22 +4,16 @@ defmodule FuelCalculator.DataCase do
   access to the application's data layer.
 
   You may define functions here to be used as helpers in
-  your tests.
+  your tests with Ecto schemas and changesets.
 
-  Finally, if the test case interacts with the database,
-  we enable the SQL sandbox, so changes done to the database
-  are reverted at the end of every test. If you are using
-  PostgreSQL, you can even run database tests asynchronously
-  by setting `use FuelCalculator.DataCase, async: true`, although
-  this option is not recommended for other databases.
+  Note: This application uses tableless Ecto schemas and does not
+  require a database connection.
   """
 
   use ExUnit.CaseTemplate
 
   using do
     quote do
-      alias FuelCalculator.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
@@ -27,17 +21,8 @@ defmodule FuelCalculator.DataCase do
     end
   end
 
-  setup tags do
-    FuelCalculator.DataCase.setup_sandbox(tags)
+  setup _tags do
     :ok
-  end
-
-  @doc """
-  Sets up the sandbox based on the test tags.
-  """
-  def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(FuelCalculator.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
   end
 
   @doc """

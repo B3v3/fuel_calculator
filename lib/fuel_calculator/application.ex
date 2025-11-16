@@ -9,7 +9,6 @@ defmodule FuelCalculator.Application do
   def start(_type, _args) do
     children = [
       FuelCalculatorWeb.Telemetry,
-      FuelCalculator.Repo,
       {DNSCluster, query: Application.get_env(:fuel_calculator, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: FuelCalculator.PubSub},
       # Start a worker by calling: FuelCalculator.Worker.start_link(arg)
