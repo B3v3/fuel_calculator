@@ -13,27 +13,19 @@ defmodule FuelCalculator.Calculator do
     mars: 3.711
   }
 
-  @doc """
-  Returns all available planets with their gravity constants as map
-  """
   def planets_gravity do
     @planets_gravity
   end
 
-  @doc """
-  Gets the gravity constant for a given planet.
+  def get_gravity(planet) when is_bitstring(planet) do
+    Map.get(@planets_gravity, String.to_existing_atom(planet))
+  end
 
-  ## Parameters
-    - planet: Atom representing the planet (:earth, :moon, or :mars)
-  """
   def get_gravity(planet) when is_atom(planet) do
     Map.get(@planets_gravity, planet)
   end
 
-  def get_gravity(_unsupported_planet) do
-    raise ArgumentError,
-          "unsupported planet. Must be one of: #{Enum.join(Map.keys(@planets_gravity), ", ")}"
-  end
+  def get_gravity(_planet), do: nil
 
   @doc """
   Calculates total fuel required for a complete flight path.

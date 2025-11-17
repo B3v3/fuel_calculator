@@ -103,3 +103,23 @@
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
 /* This file is for your main application CSS */
+
+.input {
+  @apply backdrop-blur-sm bg-white/10 border-2 border-white/20 text-white placeholder-blue-200/50;
+  @apply focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 focus:bg-white/15;
+  @apply transition-all;
+}
+
+.label {
+  @apply text-white font-medium;
+}
+
+.input-error {
+  @apply border-red-400/50 bg-red-500/10;
+}
+
+/* Animate stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
