@@ -4,7 +4,7 @@ A web application for calculating the fuel required for interplanetary travel mi
 
 ## Demo
 
-[![Watch the demo](https://cdn.loom.com/sessions/thumbnails/fb5c580b49654607b8f10a91fecbacd9-with-play.gif)](https://www.loom.com/share/fb5c580b49654607b8f10a91fecbacd9)
+https://www.loom.com/share/fb5c580b49654607b8f10a91fecbacd9
 
 ## Quick Start
 
