@@ -79,6 +79,8 @@ defmodule FuelCalculatorWeb.FuelCalculatorLive.Components do
   attr :planets, :map, required: true
 
   def flight_path_list(assigns) do
+    assigns = assign(assigns, :last_index, length(assigns.steps) - 1)
+
     ~H"""
     <div class="border-t border-white/20 pt-4">
       <h3 class="text-sm font-semibold text-white mb-3">Current Flight Path</h3>
@@ -93,6 +95,7 @@ defmodule FuelCalculatorWeb.FuelCalculatorLive.Components do
           step={step}
           index={idx}
           planets={@planets}
+          is_last={idx == @last_index}
         />
       </div>
     </div>
@@ -102,6 +105,7 @@ defmodule FuelCalculatorWeb.FuelCalculatorLive.Components do
   attr :step, :map, required: true
   attr :index, :integer, required: true
   attr :planets, :map, required: true
+  attr :is_last, :boolean, required: true
 
   defp flight_path_step(assigns) do
     ~H"""
@@ -128,6 +132,7 @@ defmodule FuelCalculatorWeb.FuelCalculatorLive.Components do
         <span class="text-sm font-medium text-white capitalize">{@step.planet}</span>
       </div>
       <button
+        :if={@is_last}
         type="button"
         phx-click="remove_step"
         phx-value-index={@index}
@@ -136,6 +141,8 @@ defmodule FuelCalculatorWeb.FuelCalculatorLive.Components do
       >
         <.icon name="hero-trash" class="w-4 h-4" />
       </button>
+      <div :if={!@is_last} class="flex-shrink-0 w-7 h-7">
+      </div>
     </div>
     """
   end
